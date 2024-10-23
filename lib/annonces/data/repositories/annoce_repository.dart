@@ -1,15 +1,15 @@
-import 'package:annonceflash_project/annonces/data/models/annonce_model.dart';
-import 'package:annonceflash_project/annonces/data/models/annonces_query_filter.dart';
-import 'package:annonceflash_project/annonces/data/service/annonce_service.dart';
+import 'package:annonceflash_project/annonces/data/models/announce_model.dart';
+import 'package:annonceflash_project/annonces/data/models/announce_query_filter.dart';
+import 'package:annonceflash_project/annonces/data/service/announce_service.dart';
 
 class AnnonceRepository {
-  final AnnonceService service;
+  final AnnounceService service;
 
   AnnonceRepository({
     required this.service,
   });
 
-  Future<List<AnnonceModel>> getAnnonces({
+  Future<List<AnnounceModel>> getAnnonces({
     required AnnonceQueryFilter filter,
   }) async {
     final data = await service.getAnnonces(
@@ -17,7 +17,7 @@ class AnnonceRepository {
     );
 
     return (data['annonces'] as List)
-        .map((json) => AnnonceModel.fromJson(json))
+        .map((json) => AnnounceModel.fromJson(json))
         .toList();
   }
 }

@@ -1,11 +1,14 @@
 // annonce_details_page.dart
-import 'package:annonceflash_project/annonces/data/models/annonce_model.dart';
+import 'package:annonceflash_project/annonces/data/models/announce_model.dart';
 import 'package:flutter/material.dart';
 
 class AnnonceDetailsPage extends StatelessWidget {
-  final AnnonceModel annonce;
+  final AnnounceModel annonce;
 
-  const AnnonceDetailsPage({super.key, required this.annonce,});
+  const AnnonceDetailsPage({
+    super.key,
+    required this.annonce,
+  });
 
   @override
   Widget build(BuildContext context) {

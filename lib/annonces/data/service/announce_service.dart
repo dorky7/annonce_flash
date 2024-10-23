@@ -1,10 +1,12 @@
-import 'package:annonceflash_project/annonces/data/models/annonces_query_filter.dart';
+import 'package:annonceflash_project/annonces/data/models/announce_query_filter.dart';
 import 'package:dio/dio.dart';
 
-class AnnonceService {
+class AnnounceService {
   final Dio http;
 
-  AnnonceService({required this.http});
+  AnnounceService({
+    required this.http,
+  });
 
   Future<dynamic> getAnnonces({
     required AnnonceQueryFilter filter,

@@ -1,4 +1,4 @@
-package com.example.annonceflash_project
+package com.localhost.annonceflash
 
 import io.flutter.embedding.android.FlutterActivity
 
