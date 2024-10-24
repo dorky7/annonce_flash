@@ -10,6 +10,9 @@ class TokenInterceptor extends QueuedInterceptor {
     if (token != null) {
       options.headers['Authorization'] = 'Bearer $token';
     }
+    options.headers['X-AppApiToken'] =
+        'aWhhSWlnS1FLY2lNTUhWa2hVMEN5RVZZZkIwTVY5Mkg=';
+    options.headers['X-AppType'] = 'mobile_flutter';
     handler.next(options);
   }
 }

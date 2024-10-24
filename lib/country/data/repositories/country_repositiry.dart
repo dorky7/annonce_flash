@@ -1,5 +1,4 @@
-import 'package:annonceflash_project/pays/data/models/country_model.dart';
-
+import 'package:annonceflash_project/country/data/models/country_model.dart';
 
 class CountryRepository {
   final List<Country> countries = [];
@@ -13,7 +12,8 @@ class CountryRepository {
   }
 
   void updateCountry(Country updatedCountry) {
-    final index = countries.indexWhere((country) => country.code == updatedCountry.code);
+    final index =
+        countries.indexWhere((country) => country.code == updatedCountry.code);
     if (index != -1) {
       countries[index] = updatedCountry;
     }

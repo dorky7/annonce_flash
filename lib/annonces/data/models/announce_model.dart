@@ -117,7 +117,7 @@ class AnnounceModel {
     required this.picture,
   });
 
-  factory AnnounceModel.fromMap(Map<String, dynamic> json) {
+  factory AnnounceModel.fromJson(Map<String, dynamic> json) {
     return AnnounceModel(
       id: json['id'],
       countryCode: json['country_code'],
