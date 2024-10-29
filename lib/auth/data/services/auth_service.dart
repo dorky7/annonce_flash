@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
   final Dio http;
@@ -8,13 +9,13 @@ class AuthService {
   });
 
   Future<dynamic> login({
-    required String username,
+    required String email,
     required String password,
   }) async {
     Response response = await http.post(
-      '/auth/login',
+      'api/auth/login',
       data: {
-        "username": username,
+        "email": email,
         "password": password,
       },
     );
@@ -22,7 +23,10 @@ class AuthService {
   }
 
   Future<dynamic> getCurrentUser() async {
-    Response response = await http.get('/api/auth/login');
+        final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    var userId =  prefs.getString('userId');
+    Response response = await http.get('/api/auth/logout/$userId');
     return response.data;
   }
 }

@@ -2,6 +2,9 @@ import 'package:annonceflash_project/annonces/business_logic/announce_list/annou
 
 import 'package:annonceflash_project/annonces/data/repositories/announce_repository.dart';
 import 'package:annonceflash_project/annonces/data/service/announce_service.dart';
+import 'package:annonceflash_project/auth/business_logic/bloc/auth_bloc.dart';
+import 'package:annonceflash_project/auth/data/repositories/auth_repository.dart';
+import 'package:annonceflash_project/auth/data/services/auth_service.dart';
 import 'package:annonceflash_project/shared/config.dart';
 import 'package:annonceflash_project/token_interceptor.dart';
 import 'package:dio/dio.dart';
@@ -17,6 +20,21 @@ void setupLocator() {
       ),
     )..interceptors.add(TokenInterceptor()),
   );
+
+getIt.registerSingleton(AuthService(http: getIt.get<Dio>()));
+
+ getIt.registerSingleton(
+    AuthRepository(getIt.get<AuthService>() ,) ,
+  );
+
+  getIt.registerSingleton(
+    AuthBloc(
+      repository: getIt.get<AuthRepository>(),
+    ),
+  );
+
+  
+
 
   getIt.registerSingleton(AnnounceService(http: getIt.get<Dio>()));
 

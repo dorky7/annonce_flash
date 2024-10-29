@@ -7,13 +7,18 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+
+  final _appRouter = AppRouter();
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Annonces Flash',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return MaterialApp.router(
+        title: 'Annonces Flash',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
       ),
+
+      routerConfig: _appRouter.config(),
     );
   }
+
 }

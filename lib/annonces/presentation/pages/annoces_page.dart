@@ -1,5 +1,6 @@
 // // annonce_page.dart
 
+// import 'package:annonceflash_project/annonces/business_logic/announce_list/announce_list_bloc.dart';
 // import 'package:annonceflash_project/annonces/presentation/pages/annonce_details_pages.dart';
 // import 'package:flutter/material.dart';
 // import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,11 +16,11 @@
 //       appBar: AppBar(
 //         title: const Text('Annonces'),
 //       ),
-//       body: BlocBuilder<AnnonceBloc, AnnonceState>(
+//       body: BlocBuilder<AnnounceListBloc, AnnounceListState>(
 //         builder: (context, state) {
-//           if (state is AnnonceLoading) {
+//           if (state is FetchAnnounceListLoading) {
 //             return const Center(child: CircularProgressIndicator());
-//           } else if (state is AnnonceLoaded) {
+//           } else if (state is Announce) {
 //             return ListView.builder(
 //               itemCount: state.annonces.length,
 //               itemBuilder: (context, index) {
