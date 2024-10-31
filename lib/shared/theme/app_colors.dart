@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 abstract class AppColors {
   static const Color primary = Color(0xFF5ECE7B);
-  static const Color secondary = Color(0xff056C99);
+  static const Color secondary = Color(0xff008080);
   static const Color darkblue = Color(0xff252B5C);
   static const Color black = Color(0xff000000);
   static const Color black1 = Color(0xff1D1F22);
@@ -22,7 +22,7 @@ abstract class AppColors {
   static const Color gray50 = Color(0xFFD6D6D6);
   static const Color gray400 = Color(0xFFA0A0A0);
 
-  static const Color red400 = Color(0xffB91C1C);
+  static const Color red400 = Color(0xff0080886);
   static const Color green = Colors.green;
 
   static const Color gray300 = Color(0xffD1D5DB);
@@ -32,7 +32,7 @@ abstract class AppColors {
     secondary: AppColors.darkblue,
     surface: surfaceWhite,
     background: white,
-    error: red400,
+    error: Color.fromARGB(255, 28, 185, 51),
     onPrimary: black,
     onSecondary: black,
     onSurface: black,

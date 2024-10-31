@@ -1,4 +1,5 @@
 import 'package:annonceflash_project/shared/routes/app_router.gr.dart';
+import 'package:annonceflash_project/shared/theme/app_colors.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
@@ -21,24 +22,28 @@ class ApplicationScreen extends StatelessWidget {
           onTap: tabsRouter.setActiveIndex,
           items: const [
             BottomNavigationBarItem(
+              backgroundColor: AppColors.black,
               label: 'Home',
               icon: Icon(
                 Icons.home,
               ),
             ),
             BottomNavigationBarItem(
+              backgroundColor: AppColors.black,
               label: 'Search',
               icon: Icon(
                 Icons.search,
               ),
             ),
             BottomNavigationBarItem(
+              backgroundColor: AppColors.black,
               label: 'Categories',
               icon: Icon(
                 Icons.category,
               ),
             ),
             BottomNavigationBarItem(
+              backgroundColor: AppColors.black,
               label: 'Profile',
               icon: Icon(
                 Icons.person,
