@@ -5,5 +5,6 @@ sealed class CategoryListEvent extends Equatable {
 
   @override
   List<Object> get props => [];
+  
 }
- final class FetchCategoryListEvent extends CategoryListEvent{}
+final class FetchCategoryListEvent extends CategoryListEvent {}

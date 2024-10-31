@@ -2,13 +2,11 @@ import 'package:dio/dio.dart';
 
 class CategoryService {
   final Dio http;
-
-  CategoryService({
+   CategoryService({
     required this.http,
   });
-
-  Future<dynamic> fetchCategories() async {
-    Response response = await http.get('/api/categories');
+  Future<dynamic> fetchCategories() async{
+    Response response= await http.get('/products/category-list');
     return response.data;
   }
 }
