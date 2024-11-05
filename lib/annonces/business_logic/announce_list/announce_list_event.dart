@@ -12,3 +12,9 @@ final class FetchAnnounceListEvent extends AnnounceListEvent {
 
   const FetchAnnounceListEvent({required this.filter});
 }
+
+final class FetchMoreAnnounceListEvent extends AnnounceListEvent {
+  final AnnounceQueryFilter filter;
+
+  const FetchMoreAnnounceListEvent({required this.filter});
+}

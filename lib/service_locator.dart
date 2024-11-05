@@ -1,4 +1,5 @@
 import 'package:annonceflash_project/annonces/business_logic/announce_list/announce_list_bloc.dart';
+import 'package:annonceflash_project/annonces/data/models/announce_query_filter.dart';
 
 import 'package:annonceflash_project/annonces/data/repositories/announce_repository.dart';
 import 'package:annonceflash_project/annonces/data/service/announce_service.dart';
@@ -21,10 +22,12 @@ void setupLocator() {
     )..interceptors.add(TokenInterceptor()),
   );
 
-getIt.registerSingleton(AuthService(http: getIt.get<Dio>()));
+  getIt.registerSingleton(AuthService(http: getIt.get<Dio>()));
 
- getIt.registerSingleton(
-    AuthRepository(getIt.get<AuthService>() ,) ,
+  getIt.registerSingleton(
+    AuthRepository(
+      getIt.get<AuthService>(),
+    ),
   );
 
   getIt.registerSingleton(
@@ -32,9 +35,6 @@ getIt.registerSingleton(AuthService(http: getIt.get<Dio>()));
       repository: getIt.get<AuthRepository>(),
     ),
   );
-
-  
-
 
   getIt.registerSingleton(AnnounceService(http: getIt.get<Dio>()));
 
@@ -45,6 +45,10 @@ getIt.registerSingleton(AuthService(http: getIt.get<Dio>()));
   getIt.registerSingleton(
     AnnounceListBloc(
       repository: getIt.get<AnnounceRepository>(),
-    ),
+    )..add(
+        FetchAnnounceListEvent(
+          filter: AnnounceQueryFilter(),
+        ),
+      ),
   );
 }

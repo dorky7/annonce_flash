@@ -27,3 +27,15 @@ final class FetchAnnounceListFailure extends AnnounceListState {
     super.announces,
   });
 }
+
+final class FetchMoreAnnounceListLoading extends AnnounceListState {
+  const FetchMoreAnnounceListLoading({super.announces});
+}
+
+final class FetchMoreAnnounceListFailure extends AnnounceListState {
+  final String message;
+  const FetchMoreAnnounceListFailure({
+    required this.message,
+    super.announces,
+  });
+}

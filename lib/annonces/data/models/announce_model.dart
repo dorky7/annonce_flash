@@ -7,36 +7,36 @@ class AnnounceModel {
   int categoryId;
   int? postTypeId;
   String title;
-  String excerpt;
-  String description;
+  String? excerpt;
+  String? description;
   List<String> tags;
-  String price;
-  String currencyCode;
-  int negotiable;
-  String contactName;
-  String authField;
-  String email;
-  String phone;
-  String phoneNational;
-  String phoneCountry;
+  String? price;
+  String? currencyCode;
+  int? negotiable;
+  String? contactName;
+  String? authField;
+  String? email;
+  String? phone;
+  String? phoneNational;
+  String? phoneCountry;
   bool? phoneHidden;
   String? address;
-  int cityId;
-  double lat;
-  double lon;
-  String createFromIp;
+  int? cityId;
+  double? lat;
+  double? lon;
+  String? createFromIp;
   String? latestUpdateIp;
-  int visits;
-  String tmpToken;
+  int? visits;
+  String? tmpToken;
   String? emailToken;
   String? phoneToken;
   DateTime? emailVerifiedAt;
   DateTime? phoneVerifiedAt;
-  int acceptTerms;
-  int acceptMarketingOffers;
-  int isPermanent;
+  int? acceptTerms;
+  int? acceptMarketingOffers;
+  int? isPermanent;
   DateTime? reviewedAt;
-  int featured;
+  int? featured;
   DateTime? archivedAt;
   DateTime? archivedManuallyAt;
   DateTime? deletionMailSentAt;
@@ -47,13 +47,13 @@ class AnnounceModel {
   int reference;
   String slug;
   String url;
-  String phoneIntl;
-  String createdAtFormatted;
-  String userPhotoUrl;
-  String countryFlagUrl;
-  String priceLabel;
-  String priceFormatted;
-  String visitsFormatted;
+  String? phoneIntl;
+  String? createdAtFormatted;
+  String? userPhotoUrl;
+  String? countryFlagUrl;
+  String? priceLabel;
+  String? priceFormatted;
+  String? visitsFormatted;
   String? distanceInfo;
   int countPictures;
   Picture picture;
@@ -68,10 +68,10 @@ class AnnounceModel {
     required this.excerpt,
     required this.description,
     required this.tags,
-    required this.price,
-    required this.currencyCode,
-    required this.negotiable,
-    required this.contactName,
+    this.price,
+    this.currencyCode,
+    this.negotiable,
+    this.contactName,
     required this.authField,
     required this.email,
     required this.phone,
@@ -79,22 +79,22 @@ class AnnounceModel {
     required this.phoneCountry,
     this.phoneHidden,
     this.address,
-    required this.cityId,
-    required this.lat,
-    required this.lon,
-    required this.createFromIp,
+    this.cityId,
+    this.lat,
+    this.lon,
+    this.createFromIp,
     this.latestUpdateIp,
-    required this.visits,
-    required this.tmpToken,
+    this.visits,
+    this.tmpToken,
     this.emailToken,
     this.phoneToken,
     this.emailVerifiedAt,
     this.phoneVerifiedAt,
-    required this.acceptTerms,
-    required this.acceptMarketingOffers,
-    required this.isPermanent,
+    this.acceptTerms,
+    this.acceptMarketingOffers,
+    this.isPermanent,
     this.reviewedAt,
-    required this.featured,
+    this.featured,
     this.archivedAt,
     this.archivedManuallyAt,
     this.deletionMailSentAt,
@@ -105,13 +105,13 @@ class AnnounceModel {
     required this.reference,
     required this.slug,
     required this.url,
-    required this.phoneIntl,
-    required this.createdAtFormatted,
-    required this.userPhotoUrl,
-    required this.countryFlagUrl,
-    required this.priceLabel,
-    required this.priceFormatted,
-    required this.visitsFormatted,
+    this.phoneIntl,
+    this.createdAtFormatted,
+    this.userPhotoUrl,
+    this.countryFlagUrl,
+    this.priceLabel,
+    this.priceFormatted,
+    this.visitsFormatted,
     this.distanceInfo,
     required this.countPictures,
     required this.picture,
@@ -180,7 +180,7 @@ class AnnounceModel {
       priceFormatted: json['price_formatted'],
       visitsFormatted: json['visits_formatted'],
       distanceInfo: json['distance_info'],
-      countPictures: json['countPictures'],
+      countPictures: json['count_pictures'],
       picture: Picture.fromJson(json['picture']),
     );
   }

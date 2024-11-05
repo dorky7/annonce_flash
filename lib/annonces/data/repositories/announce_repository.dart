@@ -17,7 +17,7 @@ class AnnounceRepository {
       filter: filter,
     );
 
-    return PaginatedData.fromJson(
+    return PaginatedData<AnnounceModel>.fromJson(
       json: data['result'],
       fromJsonT: AnnounceModel.fromJson,
     );

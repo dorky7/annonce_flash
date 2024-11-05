@@ -35,6 +35,61 @@ class AnnounceListBloc extends Bloc<AnnounceListEvent, AnnounceListState> {
         emit(
           FetchAnnounceListFailure(
             message: Utils.extraErrorMessage(e),
+            announces: state.announces,
+          ),
+        );
+      }
+    });
+
+    on<FetchMoreAnnounceListEvent>((event, emit) async {
+      if (state is FetchMoreAnnounceListLoading) {
+        return;
+      }
+
+      if (state.announces == null) {
+        return;
+      }
+
+      if (state.announces!.currentPage! >= state.announces!.lastPage!) {
+        return;
+      }
+
+      try {
+        emit(
+          FetchMoreAnnounceListLoading(
+            announces: state.announces,
+          ),
+        );
+
+        final filter = AnnounceQueryFilter(
+          perPage: state.announces?.perPage ?? 12,
+          page: (state.announces?.currentPage ?? 0) + 1,
+        );
+
+        final data = await repository.getAnnounces(
+          filter: filter,
+        );
+
+        final announces = PaginatedData(
+          currentPage: data.currentPage,
+          perPage: data.perPage,
+          to: data.to,
+          total: data.total,
+          from: data.from,
+          lastPage: data.lastPage,
+          data: [...state.announces!.data, ...data.data],
+        );
+
+        emit(
+          FetchAnnounceListSuccess(
+            announces: announces,
+          ),
+        );
+      } catch (e) {
+        emit(
+          FetchMoreAnnounceListFailure(
+            message: Utils.extraErrorMessage(e),
+            announces: state.announces,
           ),
         );
       }
