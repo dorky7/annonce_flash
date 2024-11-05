@@ -1,3 +1,4 @@
+import 'package:annonceflash_project/auth/presentation/pages/login_screen.dart';
 import 'package:annonceflash_project/shared/routes/app_router.gr.dart';
 import 'package:annonceflash_project/shared/theme/app_colors.dart';
 import 'package:auto_route/auto_route.dart';
@@ -14,7 +15,7 @@ class ApplicationScreen extends StatelessWidget {
         HomeRoute(),
         SearchRoute(),
         CategoriesRoute(),
-        ProfilesRoute(),
+        LoginScsreen(),
       ],
       bottomNavigationBuilder: (_, tabsRouter) {
         return BottomNavigationBar(
@@ -44,7 +45,7 @@ class ApplicationScreen extends StatelessWidget {
             ),
             BottomNavigationBarItem(
               backgroundColor: AppColors.black,
-              label: 'Profile',
+              label: 'login',
               icon: Icon(
                 Icons.person,
               ),

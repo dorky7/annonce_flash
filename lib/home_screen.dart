@@ -105,6 +105,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemBuilder: (context, index) {
                     final announce = announces[index];
                     return Container(
+                      width: double.infinity,
+                      height: 150,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
                       child: Image.network(
                         announce.picture.url.full,
                         fit: BoxFit.cover,

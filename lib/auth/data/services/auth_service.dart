@@ -13,7 +13,8 @@ class AuthService {
     required String password,
   }) async {
     Response response = await http.post(
-      'api/auth/login',
+
+      '/auth/login',
       data: {
         "email": email,
         "password": password,
@@ -26,7 +27,7 @@ class AuthService {
         final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     var userId =  prefs.getString('userId');
-    Response response = await http.get('/api/auth/logout/$userId');
+    Response response = await http.get('/auth/logout/$userId');
     return response.data;
   }
 }
