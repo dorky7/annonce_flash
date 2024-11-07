@@ -38,7 +38,7 @@ class ApplicationScreen extends StatelessWidget {
             ),
             BottomNavigationBarItem(
               backgroundColor: AppColors.black,
-              label: 'Categories',
+              label: 'Categories ',
               icon: Icon(
                 Icons.category,
               ),
