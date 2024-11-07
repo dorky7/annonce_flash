@@ -40,10 +40,10 @@ class _HomeScreenState extends State<HomeScreen> {
         !controller.position.outOfRange) {
       log('Load More');
       getIt.get<AnnounceListBloc>().add(
-        FetchMoreAnnounceListEvent(
-          filter: AnnounceQueryFilter(),
-        ),
-      );
+            FetchMoreAnnounceListEvent(
+              filter: AnnounceQueryFilter(),
+            ),
+          );
     }
   }
 
@@ -62,9 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           IconButton(
             icon: const Icon(Icons.search, color: Colors.white),
-            onPressed: () {
-              
-            },
+            onPressed: () {},
           ),
         ],
         backgroundColor: AppColors.primary,
@@ -77,10 +75,10 @@ class _HomeScreenState extends State<HomeScreen> {
               child: TextButton(
                 onPressed: () {
                   getIt.get<AnnounceListBloc>().add(
-                    FetchAnnounceListEvent(
-                      filter: AnnounceQueryFilter(),
-                    ),
-                  );
+                        FetchAnnounceListEvent(
+                          filter: AnnounceQueryFilter(),
+                        ),
+                      );
                 },
                 child: Text(
                   state.message,
@@ -123,13 +121,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemCount: announces!.length,
                   itemBuilder: (context, index) {
                     final announce = announces[index];
-                    return ClipRRect(
-                      child: Container(
-                        width: double.infinity,
-                        height: 150,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
+                    return Container(
+                      width: double.infinity,
+                      height: 150,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
                         child: Image.network(
                           announce.picture.url.full,
                           fit: BoxFit.cover,
@@ -153,4 +152,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-

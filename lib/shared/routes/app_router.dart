@@ -29,9 +29,8 @@ class AppRouter extends RootStackRouter {
           ],
         ),
         AutoRoute(
-          initial: false,
           page: LoginRoute.page,
-          path: 'login',
+          path: '/login',
         )
       ];
 }

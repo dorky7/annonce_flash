@@ -13,20 +13,22 @@ class AuthService {
     required String password,
   }) async {
     Response response = await http.post(
-
       '/auth/login',
       data: {
         "email": email,
         "password": password,
+        "auth_field": "email",
+        "phone": null,
+        "phone_country": null
       },
     );
     return response.data;
   }
 
   Future<dynamic> getCurrentUser() async {
-        final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    var userId =  prefs.getString('userId');
+    var userId = prefs.getString('userId');
     Response response = await http.get('/auth/logout/$userId');
     return response.data;
   }
