@@ -15,7 +15,7 @@ class ApplicationScreen extends StatelessWidget {
         HomeRoute(),
         SearchRoute(),
         CategoriesRoute(),
-        LoginScsreen(),
+        LoginRoute(),
       ],
       bottomNavigationBuilder: (_, tabsRouter) {
         return BottomNavigationBar(

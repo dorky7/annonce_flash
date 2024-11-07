@@ -94,20 +94,20 @@ class LoginRoute extends _i7.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i5.ProfilesScreen]
-class ProfilesRoute extends _i7.PageRouteInfo<void> {
-  const ProfilesRoute({List<_i7.PageRouteInfo>? children})
+/// [_i5.ProfileScreen]
+class ProfileRoute extends _i7.PageRouteInfo<void> {
+  const ProfileRoute({List<_i7.PageRouteInfo>? children})
       : super(
-          ProfilesRoute.name,
+          ProfileRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'ProfilesRoute';
+  static const String name = 'ProfileRoute';
 
   static _i7.PageInfo page = _i7.PageInfo(
     name,
     builder: (data) {
-      return const _i5.ProfilesScreen();
+      return const _i5.ProfileScreen();
     },
   );
 }

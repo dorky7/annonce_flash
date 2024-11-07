@@ -8,7 +8,7 @@ class CategoryService {
   });
 
   Future<dynamic> fetchCategories() async {
-    Response response = await http.get('/api/categories');
+    Response response = await http.get('/categories');
     return response.data;
   }
 }

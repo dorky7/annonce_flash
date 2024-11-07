@@ -40,16 +40,35 @@ class _HomeScreenState extends State<HomeScreen> {
         !controller.position.outOfRange) {
       log('Load More');
       getIt.get<AnnounceListBloc>().add(
-            FetchMoreAnnounceListEvent(
-              filter: AnnounceQueryFilter(),
-            ),
-          );
+        FetchMoreAnnounceListEvent(
+          filter: AnnounceQueryFilter(),
+        ),
+      );
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const TextField(
+          decoration: InputDecoration(
+            hintText: 'Search...',
+            border: InputBorder.none,
+            hintStyle: TextStyle(color: Colors.white60),
+          ),
+          style: TextStyle(color: Colors.white, fontSize: 16.0),
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search, color: Colors.white),
+            onPressed: () {
+              
+            },
+          ),
+        ],
+        backgroundColor: AppColors.primary,
+      ),
       body: BlocBuilder<AnnounceListBloc, AnnounceListState>(
         builder: (context, state) {
           if (state is FetchAnnounceListFailure &&
@@ -58,10 +77,10 @@ class _HomeScreenState extends State<HomeScreen> {
               child: TextButton(
                 onPressed: () {
                   getIt.get<AnnounceListBloc>().add(
-                        FetchAnnounceListEvent(
-                          filter: AnnounceQueryFilter(),
-                        ),
-                      );
+                    FetchAnnounceListEvent(
+                      filter: AnnounceQueryFilter(),
+                    ),
+                  );
                 },
                 child: Text(
                   state.message,
@@ -104,15 +123,17 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemCount: announces!.length,
                   itemBuilder: (context, index) {
                     final announce = announces[index];
-                    return Container(
-                      width: double.infinity,
-                      height: 150,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: Image.network(
-                        announce.picture.url.full,
-                        fit: BoxFit.cover,
+                    return ClipRRect(
+                      child: Container(
+                        width: double.infinity,
+                        height: 150,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Image.network(
+                          announce.picture.url.full,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     );
                   },
@@ -123,8 +144,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: CupertinoActivityIndicator(
                     radius: 40,
                   ),
-                )
-              ]
+                ),
+              ],
             ],
           );
         },
@@ -132,3 +153,4 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+

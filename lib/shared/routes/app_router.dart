@@ -23,12 +23,13 @@ class AppRouter extends RootStackRouter {
               path: 'categories',
             ),
             AutoRoute(
-              page: ProfilesRoute.page,
+              page: ProfileRoute.page,
               path: 'profile',
             ),
           ],
         ),
         AutoRoute(
+          initial: false,
           page: LoginRoute.page,
           path: 'login',
         )
