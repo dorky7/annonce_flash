@@ -14,16 +14,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       try {
         emit(LoginLoading());
         final user = await repository.login(
-        email:  event.email,
-        password: event.password,
+          email: event.email,
+          password: event.password,
         );
         emit(LoginSuccess(user: user));
       } catch (e) {
-        emit(LoginFailure(message: e.toString(),
-        ));
-
+        emit(
+          LoginFailure(
+            message: e.toString(),
+          ),
+        );
       }
-      // TODO: implement event handler
     });
 
     on<CheckAuthStateEvent>((event, emit) async {
@@ -48,7 +49,5 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(CheckAuthStateFailure());
       }
     });
-
-
   }
 }

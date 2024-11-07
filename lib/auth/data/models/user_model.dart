@@ -13,8 +13,8 @@ class UserModel {
   String languageCode;
   int userTypeId;
   int genderId;
-  String photo;
-  String about;
+  String? photo;
+  String? about;
   String authField;
   String email;
   String phone;
@@ -22,7 +22,7 @@ class UserModel {
   String phoneCountry;
   int phoneHidden;
   int disableComments;
-  String createFromIp;
+  String? createFromIp;
   String? latestUpdateIp;
   String? provider;
   String? providerId;
@@ -55,8 +55,8 @@ class UserModel {
     required this.languageCode,
     required this.userTypeId,
     required this.genderId,
-    required this.photo,
-    required this.about,
+    this.photo,
+    this.about,
     required this.authField,
     required this.email,
     required this.phone,
@@ -64,7 +64,7 @@ class UserModel {
     required this.phoneCountry,
     required this.phoneHidden,
     required this.disableComments,
-    required this.createFromIp,
+    this.createFromIp,
     this.latestUpdateIp,
     this.provider,
     this.providerId,
@@ -133,5 +133,4 @@ class UserModel {
       phoneIntl: json['phone_intl'],
     );
   }
-
 }

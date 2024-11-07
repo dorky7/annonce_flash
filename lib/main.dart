@@ -1,4 +1,5 @@
 import 'package:annonceflash_project/annonces/data/repositories/announce_repository.dart';
+import 'package:annonceflash_project/auth/business_logic/bloc/auth_bloc.dart';
 import 'package:annonceflash_project/shared/routes/app_router.dart';
 import 'package:annonceflash_project/service_locator.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider<AuthBloc>(
+          create: (_) => getIt.get<AuthBloc>(),
+        ),
         BlocProvider<AnnounceListBloc>(
           create: (_) => getIt.get<AnnounceListBloc>(),
         ),
@@ -28,7 +32,6 @@ class MyApp extends StatelessWidget {
         ),
         routerConfig: _appRouter.config(),
       ),
-      
     );
   }
 }

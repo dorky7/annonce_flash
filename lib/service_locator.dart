@@ -51,6 +51,4 @@ void setupLocator() {
         ),
       ),
   );
-
-
-  getIt.registerSingleton(AuthService(http:  getIt.get<Dio>()));
+}
