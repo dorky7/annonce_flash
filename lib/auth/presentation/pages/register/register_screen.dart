@@ -7,17 +7,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
-class LoginScreen extends StatefulWidget {
+class RegisterScreen extends StatefulWidget {
   final Function()? onTap;
-  const LoginScreen({super.key, required this.onTap});
+  const RegisterScreen({super.key, required this.onTap});
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _RegisterScreenState createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
 
   void showLoading() {
     showDialog(
@@ -43,9 +44,9 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
-        if (state is LoginFailure) {
-          showError('Incorrect credentials');
-        } else if (state is LoginSuccess) {
+        if (state is SignUpFailure) {
+          showError('Error during registration');
+        } else if (state is SignUpSuccess) {
           context.router.push(ProfileRoute());  // Adjust navigation to ProfileScreen
         }
       },
@@ -77,11 +78,17 @@ class _LoginScreenState extends State<LoginScreen> {
                       obscureText: true,
                     ),
                     const SizedBox(height: 10),
-                    if (state is! LoginLoading)
+                    MyTextfield(
+                      controller: confirmPasswordController,
+                      hinText: 'Confirm Password',
+                      obscureText: true,
+                    ),
+                    const SizedBox(height: 10),
+                    if (state is! SignUpLoading)
                       MyButton(
                         onTap: () {
                           context.read<AuthBloc>().add(
-                                LoginEvent(
+                                SignUpEvent(
                                   email: emailController.text,
                                   password: passwordController.text,
                                 ),
@@ -93,20 +100,20 @@ class _LoginScreenState extends State<LoginScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Don\'t have an account?',
+                          'Already have an account?',
                           style: TextStyle(color: Colors.grey[700]),
                         ),
                         const SizedBox(width: 4),
-                        GestureDetector(
-                         onTap: widget.onTap,
-                          child: const Text(
-                            'Register now',
-                            style: TextStyle(
-                              color: Colors.blue,
-                              fontWeight: FontWeight.bold,
-                            ),
+                      GestureDetector( 
+                        onTap: widget.onTap, 
+                      child: const Text( 
+                        'Login now', 
+                        style: TextStyle( 
+                          color: Colors.blue, 
+                          fontWeight: FontWeight.bold, 
                           ),
-                        ),
+                         ), 
+                         ),
                       ],
                     )
                   ],

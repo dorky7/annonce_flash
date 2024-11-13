@@ -17,7 +17,7 @@ class ApplicationScreen extends StatelessWidget {
       routes: const [
         HomeRoute(),
         SearchRoute(),
-        CategoriesRoute(),
+        //  CategoriesRoute(),
         ProfileRoute(),
       ],
       bottomNavigationBuilder: (_, tabsRouter) {

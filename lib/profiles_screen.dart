@@ -44,7 +44,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ? Center(
                   child: FilledButton(
                     onPressed: () {
-                      context.router.push(const LoginRoute());
+                      context.router.push( LoginRoute(onTap: () {}));
                     },
                     child: const Text("Login"),
                   ),

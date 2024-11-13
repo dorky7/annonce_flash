@@ -23,6 +23,14 @@ class AuthRepository {
     return UserModel.fromJson(data["result"]);
   }
 
+
+  Future<UserModel?> signUp({
+    required String email,
+    required String password,
+  }) async {
+    return null;
+  }
+
   Future<dynamic> getCurrentUser() async {
     var data = await service.getCurrentUser();
 

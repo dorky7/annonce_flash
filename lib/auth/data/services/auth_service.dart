@@ -25,6 +25,20 @@ class AuthService {
     return response.data;
   }
 
+  Future<dynamic> signUp({ 
+    required String email,
+     required String password, 
+     }) async { 
+      Response response = await http.post( 
+        '/auth/signup', 
+        data: { 
+          "email": email, 
+          "password": password, 
+          }, 
+          ); 
+          return response.data; 
+          } 
+
   Future<dynamic> getCurrentUser() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 

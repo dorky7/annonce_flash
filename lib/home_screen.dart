@@ -68,6 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: AppColors.primary,
       ),
       body: BlocBuilder<AnnounceListBloc, AnnounceListState>(
+        
         builder: (context, state) {
           if (state is FetchAnnounceListFailure &&
               (state.announces?.data.isEmpty ?? true)) {
@@ -112,31 +113,91 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               Expanded(
                 child: GridView.builder(
-                  controller: controller,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
-                  ),
-                  itemCount: announces!.length,
-                  itemBuilder: (context, index) {
-                    final announce = announces[index];
-                    return Container(
-                      width: double.infinity,
-                      height: 150,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: Image.network(
-                          announce.picture.url.full,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    );
-                  },
+  controller: controller,
+  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+    crossAxisCount: 2,
+    crossAxisSpacing: 10,
+    mainAxisSpacing: 10,
+  ),
+  itemCount: announces!.length,
+  itemBuilder: (context, index) {
+    final announce = announces[index];
+    return Container(
+      width: double.infinity,
+      height: 200, // Increased height to accommodate additional information
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Stack(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Image.network(
+              announce.picture.url.full,
+              width: double.infinity,
+              height: 150,
+              fit: BoxFit.cover,
+            ),
+          ),
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              padding: const EdgeInsets.all(8.0),
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.6),
+                borderRadius: const BorderRadius.only(
+                  bottomLeft: Radius.circular(8),
+                  bottomRight: Radius.circular(8),
                 ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    announce.title,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    "\$${announce.price}",
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.blue,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                   Row(
+                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                     children: [
+                  //     Text(
+                  //       announce.categoryId as String,
+                  //       style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.white),
+                  //     ),
+                  //     Text(
+                  //       announce.description as String,
+                  //       style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.white),
+                  //     ),
+                       IconButton(
+                       icon: const Icon(Icons.bookmark_border, color: Colors.white),
+                       onPressed: () {},
+                     ),
+                   ],
+                   ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  },
+),
+
               ),
               if (state is FetchMoreAnnounceListLoading) ...[
                 const Center(

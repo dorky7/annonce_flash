@@ -27,6 +27,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }
     });
 
+    on<SignUpEvent>((event, emit) async { 
+      try { 
+        emit(SignUpLoading()); 
+        final user = await repository.signUp( 
+          email: event.email, 
+          password: event.password, 
+          ); emit(SignUpSuccess(user: user)); 
+          } catch (e) { 
+            emit( SignUpFailure( 
+              message: e.toString(), 
+              ), ); } });
+
     on<CheckAuthStateEvent>((event, emit) async {
       try {
         final SharedPreferences prefs = await SharedPreferences.getInstance();

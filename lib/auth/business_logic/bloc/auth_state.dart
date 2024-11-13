@@ -29,3 +29,12 @@ final class CheckAuthStateFailure extends AuthState {}
 final class CheckAuthStateSuccess extends AuthState {
   const CheckAuthStateSuccess({required super.user});
 }
+
+final class SignUpLoading extends AuthState {} 
+final class SignUpSuccess extends AuthState { 
+  const SignUpSuccess({required super.user}); 
+  } 
+  
+  final class SignUpFailure extends AuthState { 
+    final String message; 
+    const SignUpFailure({required this.message}); }

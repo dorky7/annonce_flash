@@ -1,4 +1,5 @@
 import 'package:annonceflash_project/auth/presentation/pages/login_screen.dart';
+import 'package:annonceflash_project/auth/presentation/pages/register/register_screen.dart';
 import 'package:annonceflash_project/shared/routes/app_router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 
@@ -31,6 +32,10 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: LoginRoute.page,
           path: '/login',
-        )
+        ),
+        AutoRoute(
+          page: RegisterRoute.page,
+          path: '/register'
+          )
       ];
 }
