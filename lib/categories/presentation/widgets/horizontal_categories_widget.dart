@@ -79,7 +79,7 @@ class HorizontalCategoriesWidget extends StatelessWidget {
                     ),
                     child: Center(
                       child: Text(
-                        state.categories![index].capitalize(),
+                        state.categories![index].slug.capitalize(),
                         style: context.textTheme.bodyLarge?.copyWith(
                           fontWeight: FontWeight.w600,
                         ),

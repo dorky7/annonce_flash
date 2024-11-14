@@ -1,5 +1,6 @@
 import 'package:annonceflash_project/annonces/data/repositories/announce_repository.dart';
 import 'package:annonceflash_project/auth/business_logic/bloc/auth_bloc.dart';
+import 'package:annonceflash_project/categories/business_logic/bloc/category_list_bloc.dart';
 import 'package:annonceflash_project/shared/routes/app_router.dart';
 import 'package:annonceflash_project/service_locator.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<AnnounceListBloc>(
           create: (_) => getIt.get<AnnounceListBloc>(),
+        ),
+        BlocProvider<CategoryListBloc>(
+          create: (_) => getIt.get<CategoryListBloc>(),
         ),
       ],
       child: MaterialApp.router(

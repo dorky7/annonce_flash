@@ -6,6 +6,9 @@ import 'package:annonceflash_project/annonces/data/service/announce_service.dart
 import 'package:annonceflash_project/auth/business_logic/bloc/auth_bloc.dart';
 import 'package:annonceflash_project/auth/data/repositories/auth_repository.dart';
 import 'package:annonceflash_project/auth/data/services/auth_service.dart';
+import 'package:annonceflash_project/categories/business_logic/bloc/category_list_bloc.dart';
+import 'package:annonceflash_project/categories/data/reposetories/category_repository.dart';
+import 'package:annonceflash_project/categories/data/services/category_service.dart';
 import 'package:annonceflash_project/shared/config.dart';
 import 'package:annonceflash_project/token_interceptor.dart';
 import 'package:dio/dio.dart';
@@ -51,4 +54,20 @@ void setupLocator() {
         ),
       ),
   );
+
+
+  getIt.registerSingleton(CategoryService(http: getIt.get<Dio>()));
+
+  getIt.registerSingleton(
+    CategoryRepository(service: getIt.get<CategoryService>()),
+  );
+
+  getIt.registerSingleton(
+    CategoryListBloc(repository: getIt.get<CategoryRepository>(),
+     
+    )
+  );
+
+
+
 }

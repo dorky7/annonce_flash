@@ -1,12 +1,11 @@
 part of 'category_list_bloc.dart';
 
 sealed class CategoryListState extends Equatable {
-   final String? message;
-   final List<String>? categories;
-  const CategoryListState({
-    this.categories,
-    this.message,
-  });
+   
+  final List<CategoryModel>? categories;
+  final  String? message;
+
+  const CategoryListState({this.categories,  this.message});
   
   @override
   List<Object> get props => [];

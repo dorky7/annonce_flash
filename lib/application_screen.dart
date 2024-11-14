@@ -1,11 +1,7 @@
-import 'package:annonceflash_project/auth/business_logic/bloc/auth_bloc.dart';
-import 'package:annonceflash_project/auth/presentation/pages/login_screen.dart';
-import 'package:annonceflash_project/categories/presentation/pages/all_categories.dart';
 import 'package:annonceflash_project/shared/routes/app_router.gr.dart';
 import 'package:annonceflash_project/shared/theme/app_colors.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
 class ApplicationScreen extends StatelessWidget {
@@ -17,7 +13,7 @@ class ApplicationScreen extends StatelessWidget {
       routes: const [
         HomeRoute(),
         SearchRoute(),
-        //  CategoriesRoute(),
+        CategoriesRoute(),
         ProfileRoute(),
       ],
       bottomNavigationBuilder: (_, tabsRouter) {
