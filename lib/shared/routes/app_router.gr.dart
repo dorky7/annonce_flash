@@ -8,12 +8,14 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:annonceflash_project/annonces/business_logic/announce_list/announce_list_bloc.dart'
+    as _i11;
 import 'package:annonceflash_project/application_screen.dart' as _i2;
 import 'package:annonceflash_project/auth/presentation/pages/login_screen.dart'
     as _i5;
 import 'package:annonceflash_project/auth/presentation/pages/register/register_screen.dart'
     as _i7;
-import 'package:annonceflash_project/categories/presentation/page/all_categories_screen.dart'
+import 'package:annonceflash_project/categories/presentation/pages/all_categories_screen.dart'
     as _i1;
 import 'package:annonceflash_project/categories/presentation/pages/categories_screen.dart'
     as _i3;
@@ -24,22 +26,49 @@ import 'package:auto_route/auto_route.dart' as _i9;
 import 'package:flutter/material.dart' as _i10;
 
 /// generated route for
-/// [_i1.AllCategoriesScreen]
-class AllCategoriesRoute extends _i9.PageRouteInfo<void> {
-  const AllCategoriesRoute({List<_i9.PageRouteInfo>? children})
-      : super(
-          AllCategoriesRoute.name,
+/// [_i1.AllProducts]
+class AllProducts extends _i9.PageRouteInfo<AllProductsArgs> {
+  AllProducts({
+    _i10.Key? key,
+    required _i11.AnnounceListBloc bloc,
+    List<_i9.PageRouteInfo>? children,
+  }) : super(
+          AllProducts.name,
+          args: AllProductsArgs(
+            key: key,
+            bloc: bloc,
+          ),
           initialChildren: children,
         );
 
-  static const String name = 'AllCategoriesRoute';
+  static const String name = 'AllProducts';
 
   static _i9.PageInfo page = _i9.PageInfo(
     name,
     builder: (data) {
-      return const _i1.AllCategoriesScreen();
+      final args = data.argsAs<AllProductsArgs>();
+      return _i1.AllProducts(
+        key: args.key,
+        bloc: args.bloc,
+      );
     },
   );
+}
+
+class AllProductsArgs {
+  const AllProductsArgs({
+    this.key,
+    required this.bloc,
+  });
+
+  final _i10.Key? key;
+
+  final _i11.AnnounceListBloc bloc;
+
+  @override
+  String toString() {
+    return 'AllProductsArgs{key: $key, bloc: $bloc}';
+  }
 }
 
 /// generated route for
