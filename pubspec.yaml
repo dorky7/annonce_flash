@@ -50,6 +50,10 @@ dependencies:
   auto_route: ^9.2.2
   auto_route_generator: ^9.0.0
   geolocator: ^13.0.1
+  country_picker: ^2.0.27
+  connectivity_plus: ^6.1.0
+  another_flushbar: ^1.12.30
+  loader_overlay: ^4.0.3
   
  
 

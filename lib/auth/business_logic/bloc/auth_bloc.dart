@@ -1,5 +1,7 @@
+import 'package:annonceflash_project/auth/data/models/register_request.dart';
 import 'package:annonceflash_project/auth/data/models/user_model.dart';
 import 'package:annonceflash_project/auth/data/repositories/auth_repository.dart';
+import 'package:annonceflash_project/shared/utils.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -21,23 +23,29 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       } catch (e) {
         emit(
           LoginFailure(
-            message: e.toString(),
+            message: Utils.extraErrorMessage(e),
           ),
         );
       }
     });
 
-    on<SignUpEvent>((event, emit) async { 
-      try { 
-        emit(SignUpLoading()); 
-        final user = await repository.signUp( 
-          email: event.email, 
-          password: event.password, 
-          ); emit(SignUpSuccess(user: user)); 
-          } catch (e) { 
-            emit( SignUpFailure( 
-              message: e.toString(), 
-              ), ); } });
+    on<SignUpEvent>(
+      (event, emit) async {
+        try {
+          emit(SignUpLoading());
+          final user = await repository.signUp(
+            request: event.request,
+          );
+          emit(SignUpSuccess(user: user));
+        } catch (e) {
+          emit(
+            SignUpFailure(
+              message: Utils.extraErrorMessage(e),
+            ),
+          );
+        }
+      },
+    );
 
     on<CheckAuthStateEvent>((event, emit) async {
       try {

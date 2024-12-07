@@ -130,17 +130,10 @@ class HomeRoute extends _i9.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i5.LoginScreen]
-class LoginRoute extends _i9.PageRouteInfo<LoginRouteArgs> {
-  LoginRoute({
-    _i10.Key? key,
-    required dynamic Function()? onTap,
-    List<_i9.PageRouteInfo>? children,
-  }) : super(
+class LoginRoute extends _i9.PageRouteInfo<void> {
+  const LoginRoute({List<_i9.PageRouteInfo>? children})
+      : super(
           LoginRoute.name,
-          args: LoginRouteArgs(
-            key: key,
-            onTap: onTap,
-          ),
           initialChildren: children,
         );
 
@@ -149,29 +142,9 @@ class LoginRoute extends _i9.PageRouteInfo<LoginRouteArgs> {
   static _i9.PageInfo page = _i9.PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<LoginRouteArgs>();
-      return _i5.LoginScreen(
-        key: args.key,
-        onTap: args.onTap,
-      );
+      return const _i5.LoginScreen();
     },
   );
-}
-
-class LoginRouteArgs {
-  const LoginRouteArgs({
-    this.key,
-    required this.onTap,
-  });
-
-  final _i10.Key? key;
-
-  final dynamic Function()? onTap;
-
-  @override
-  String toString() {
-    return 'LoginRouteArgs{key: $key, onTap: $onTap}';
-  }
 }
 
 /// generated route for
@@ -195,17 +168,10 @@ class ProfileRoute extends _i9.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i7.RegisterScreen]
-class RegisterRoute extends _i9.PageRouteInfo<RegisterRouteArgs> {
-  RegisterRoute({
-    _i10.Key? key,
-    required dynamic Function()? onTap,
-    List<_i9.PageRouteInfo>? children,
-  }) : super(
+class RegisterRoute extends _i9.PageRouteInfo<void> {
+  const RegisterRoute({List<_i9.PageRouteInfo>? children})
+      : super(
           RegisterRoute.name,
-          args: RegisterRouteArgs(
-            key: key,
-            onTap: onTap,
-          ),
           initialChildren: children,
         );
 
@@ -214,29 +180,9 @@ class RegisterRoute extends _i9.PageRouteInfo<RegisterRouteArgs> {
   static _i9.PageInfo page = _i9.PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<RegisterRouteArgs>();
-      return _i7.RegisterScreen(
-        key: args.key,
-        onTap: args.onTap,
-      );
+      return const _i7.RegisterScreen();
     },
   );
-}
-
-class RegisterRouteArgs {
-  const RegisterRouteArgs({
-    this.key,
-    required this.onTap,
-  });
-
-  final _i10.Key? key;
-
-  final dynamic Function()? onTap;
-
-  @override
-  String toString() {
-    return 'RegisterRouteArgs{key: $key, onTap: $onTap}';
-  }
 }
 
 /// generated route for

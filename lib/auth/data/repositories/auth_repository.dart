@@ -1,3 +1,4 @@
+import 'package:annonceflash_project/auth/data/models/register_request.dart';
 import 'package:annonceflash_project/auth/data/models/user_model.dart';
 import 'package:annonceflash_project/auth/data/services/auth_service.dart';
 
@@ -23,12 +24,14 @@ class AuthRepository {
     return UserModel.fromJson(data["result"]);
   }
 
-
   Future<UserModel?> signUp({
-    required String email,
-    required String password,
+    required RegisterRequest request,
   }) async {
-    return null;
+    final data = await service.signUp(
+      request: request,
+    );
+
+    return UserModel.fromJson(data["result"]);
   }
 
   Future<dynamic> getCurrentUser() async {

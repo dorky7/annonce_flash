@@ -1,12 +1,9 @@
-import 'package:annonceflash_project/application_screen.dart';
 import 'package:annonceflash_project/auth/business_logic/bloc/auth_bloc.dart';
-import 'package:annonceflash_project/auth/presentation/my_button.dart';
 import 'package:annonceflash_project/publier/presentation/publier_announce_screen.dart';
 import 'package:annonceflash_project/shared/routes/app_router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 
 @RoutePage()
 class ProfileScreen extends StatefulWidget {
@@ -48,14 +45,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ? Center(
                   child: FilledButton(
                     onPressed: () {
-                      context.router.push(LoginRoute(onTap: () {}));
+                      context.router.push(const LoginRoute());
                     },
                     child: const Text("Login"),
                   ),
                 )
               : SingleChildScrollView(
                   child: Container(
-                    padding: const EdgeInsets.only(left: 15, top: 20, right: 15),
+                    padding:
+                        const EdgeInsets.only(left: 15, top: 20, right: 15),
                     child: GestureDetector(
                       onTap: () {
                         FocusScope.of(context).unfocus();
@@ -70,7 +68,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   width: 130,
                                   height: 130,
                                   decoration: BoxDecoration(
-                                    border: Border.all(width: 4, color: Colors.white),
+                                    border: Border.all(
+                                        width: 4, color: Colors.white),
                                     boxShadow: [
                                       BoxShadow(
                                         spreadRadius: 2,
@@ -111,7 +110,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           buildTextField("Full Name", "Dorky", false),
                           buildTextField("Email", "dorky@gmail.com", false),
                           buildTextField("Password", "******", true),
-                          buildTextField("Location", "Douala & Logbessou", false),
+                          buildTextField(
+                              "Location", "Douala & Logbessou", false),
                           const SizedBox(height: 30),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -119,7 +119,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               OutlinedButton(
                                 onPressed: () {},
                                 style: OutlinedButton.styleFrom(
-                                  padding: const EdgeInsets.symmetric(horizontal: 50),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 50),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(20),
                                   ),
@@ -137,7 +138,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 onPressed: () {},
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.teal,
-                                  padding: const EdgeInsets.symmetric(horizontal: 50),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 50),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(20),
                                   ),
@@ -159,12 +161,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               // Naviguer vers la page de publication d'annonce
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => const PublierAnnounceScreen()),
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const PublierAnnounceScreen()),
                               );
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.blue,
-                              padding: const EdgeInsets.symmetric(horizontal: 30),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 30),
                             ),
                             child: const Text(
                               'Publier une annonce',
@@ -172,7 +177,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                           ),
                           const SizedBox(height: 20),
-                      
                           const SizedBox(height: 20),
                         ],
                       ),
@@ -184,7 +188,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  Widget buildTextField(String labelText, String placeholder, bool isPasswordTextField) {
+  Widget buildTextField(
+      String labelText, String placeholder, bool isPasswordTextField) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 30),
       child: TextField(

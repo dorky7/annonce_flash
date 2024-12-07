@@ -1,27 +1,27 @@
 class UserModel {
   int id;
-  String name;
+  String? name;
   String? username;
-  DateTime updatedAt;
-  DateTime originalUpdatedAt;
+  DateTime? updatedAt;
+  DateTime? originalUpdatedAt;
   DateTime? originalLastActivity;
-  String createdAtFormatted;
-  String photoUrl;
-  bool isOnline;
-  String countryFlagUrl;
-  String countryCode;
-  String languageCode;
-  int userTypeId;
-  int genderId;
+  String? createdAtFormatted;
+  String? photoUrl;
+  bool? isOnline;
+  String? countryFlagUrl;
+  String? countryCode;
+  String? languageCode;
+  int? userTypeId;
+  int? genderId;
   String? photo;
   String? about;
-  String authField;
-  String email;
-  String phone;
-  String phoneNational;
-  String phoneCountry;
-  int phoneHidden;
-  int disableComments;
+  String? authField;
+  String? email;
+  String? phone;
+  String? phoneNational;
+  String? phoneCountry;
+  int? phoneHidden;
+  int? disableComments;
   String? createFromIp;
   String? latestUpdateIp;
   String? provider;
@@ -30,40 +30,40 @@ class UserModel {
   String? phoneToken;
   DateTime? emailVerifiedAt;
   DateTime? phoneVerifiedAt;
-  int acceptTerms;
-  int acceptMarketingOffers;
-  int darkMode;
+  dynamic acceptTerms;
+  int? acceptMarketingOffers;
+  int? darkMode;
   String? timeZone;
-  int featured;
-  int blocked;
-  int closed;
-  DateTime lastActivity;
-  String phoneIntl;
+  int? featured;
+  int? blocked;
+  int? closed;
+  DateTime? lastActivity;
+  String? phoneIntl;
 
   UserModel({
     required this.id,
-    required this.name,
+    this.name,
     this.username,
-    required this.updatedAt,
-    required this.originalUpdatedAt,
+    this.updatedAt,
+    this.originalUpdatedAt,
     this.originalLastActivity,
-    required this.createdAtFormatted,
-    required this.photoUrl,
-    required this.isOnline,
-    required this.countryFlagUrl,
-    required this.countryCode,
-    required this.languageCode,
-    required this.userTypeId,
-    required this.genderId,
+    this.createdAtFormatted,
+    this.photoUrl,
+    this.isOnline,
+    this.countryFlagUrl,
+    this.countryCode,
+    this.languageCode,
+    this.userTypeId,
+    this.genderId,
     this.photo,
     this.about,
-    required this.authField,
-    required this.email,
-    required this.phone,
-    required this.phoneNational,
-    required this.phoneCountry,
-    required this.phoneHidden,
-    required this.disableComments,
+    this.authField,
+    this.email,
+    this.phone,
+    this.phoneNational,
+    this.phoneCountry,
+    this.phoneHidden,
+    this.disableComments,
     this.createFromIp,
     this.latestUpdateIp,
     this.provider,
@@ -72,15 +72,15 @@ class UserModel {
     this.phoneToken,
     this.emailVerifiedAt,
     this.phoneVerifiedAt,
-    required this.acceptTerms,
-    required this.acceptMarketingOffers,
-    required this.darkMode,
+    this.acceptTerms,
+    this.acceptMarketingOffers,
+    this.darkMode,
     this.timeZone,
-    required this.featured,
-    required this.blocked,
-    required this.closed,
-    required this.lastActivity,
-    required this.phoneIntl,
+    this.featured,
+    this.blocked,
+    this.closed,
+    this.lastActivity,
+    this.phoneIntl,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
@@ -88,10 +88,14 @@ class UserModel {
       id: json['id'],
       name: json['name'],
       username: json['username'],
-      updatedAt: DateTime.parse(json['updated_at']),
-      originalUpdatedAt: DateTime.parse(json['original_updated_at']),
+      updatedAt: json['updated_at'] != null
+          ? DateTime.parse(json['updated_at'])
+          : null,
+      originalUpdatedAt: json['original_updated_at'] != null
+          ? DateTime.parse(json['original_updated_at'])
+          : null,
       originalLastActivity: json['original_last_activity'] != null
-          ? DateTime.parse(json['original_last_activity'])
+          ? DateTime.tryParse(json['original_last_activity'])
           : null,
       createdAtFormatted: json['created_at_formatted'],
       photoUrl: json['photo_url'],
@@ -117,10 +121,10 @@ class UserModel {
       emailToken: json['email_token'],
       phoneToken: json['phone_token'],
       emailVerifiedAt: json['email_verified_at'] != null
-          ? DateTime.parse(json['email_verified_at'])
+          ? DateTime.tryParse(json['email_verified_at'])
           : null,
       phoneVerifiedAt: json['phone_verified_at'] != null
-          ? DateTime.parse(json['phone_verified_at'])
+          ? DateTime.tryParse(json['phone_verified_at'])
           : null,
       acceptTerms: json['accept_terms'],
       acceptMarketingOffers: json['accept_marketing_offers'],
@@ -129,7 +133,9 @@ class UserModel {
       featured: json['featured'],
       blocked: json['blocked'],
       closed: json['closed'],
-      lastActivity: DateTime.parse(json['last_activity']),
+      lastActivity: json['last_activity'] != null
+          ? DateTime.tryParse(json['last_activity'])
+          : null,
       phoneIntl: json['phone_intl'],
     );
   }

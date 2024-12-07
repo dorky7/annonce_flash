@@ -1,15 +1,19 @@
 import 'package:annonceflash_project/auth/business_logic/bloc/auth_bloc.dart';
-import 'package:annonceflash_project/auth/presentation/my_button.dart';
-import 'package:annonceflash_project/auth/presentation/my_text_field.dart';
+import 'package:annonceflash_project/auth/presentation/app_button.dart';
+import 'package:annonceflash_project/auth/presentation/app_text_field.dart';
+import 'package:annonceflash_project/auth/presentation/pages/register/register_screen.dart';
 import 'package:annonceflash_project/shared/routes/app_router.gr.dart';
+import 'package:annonceflash_project/shared/widgets/app_snackbar.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 
 @RoutePage()
 class LoginScreen extends StatefulWidget {
-  final Function()? onTap;
-  const LoginScreen({super.key, required this.onTap});
+  const LoginScreen({
+    super.key,
+  });
 
   @override
   _LoginScreenState createState() => _LoginScreenState();
@@ -44,9 +48,22 @@ class _LoginScreenState extends State<LoginScreen> {
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is LoginFailure) {
-          showError('Incorrect credentials');
-        } else if (state is LoginSuccess) {
-          context.router.push(const ProfileRoute());  // Adjust navigation to ProfileScreen
+          context.loaderOverlay.hide();
+          AppSnackBar.showError(
+            message: state.message,
+            context: context,
+            duration: const Duration(seconds: 10),
+          );
+        }
+        if (state is LoginLoading) {
+          context.loaderOverlay.show();
+        }
+        if (state is LoginSuccess) {
+          context.loaderOverlay.hide();
+          context.router.pushAndPopUntil(
+            const ApplicationRoute(),
+            predicate: (route) => false,
+          );
         }
       },
       builder: (context, state) {
@@ -65,20 +82,23 @@ class _LoginScreenState extends State<LoginScreen> {
                       style: TextStyle(color: Colors.grey[700]),
                     ),
                     const SizedBox(height: 25),
-                    MyTextfield(
+                    AppTextfield(
                       controller: emailController,
                       hinText: 'Email',
                       obscureText: false,
                     ),
-                    const SizedBox(height: 10),
-                    MyTextfield(
+                    const SizedBox(height: 20),
+                    AppTextfield(
                       controller: passwordController,
                       hinText: 'Password',
                       obscureText: true,
                     ),
-                    const SizedBox(height: 10),
-                    if (state is! LoginLoading)
-                      MyButton(
+                    const SizedBox(height: 30),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                      ),
+                      child: AppButton(
                         onTap: () {
                           context.read<AuthBloc>().add(
                                 LoginEvent(
@@ -88,6 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               );
                         },
                       ),
+                    ),
                     const SizedBox(height: 50),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -98,7 +119,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         const SizedBox(width: 4),
                         GestureDetector(
-                         onTap: widget.onTap,
+                          onTap: () {
+                            context.router.push(
+                              const RegisterRoute(),
+                            );
+                          },
                           child: const Text(
                             'Register now',
                             style: TextStyle(
