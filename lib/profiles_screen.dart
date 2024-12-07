@@ -1,10 +1,12 @@
 import 'package:annonceflash_project/application_screen.dart';
 import 'package:annonceflash_project/auth/business_logic/bloc/auth_bloc.dart';
 import 'package:annonceflash_project/auth/presentation/my_button.dart';
+import 'package:annonceflash_project/publier/presentation/publier_announce_screen.dart';
 import 'package:annonceflash_project/shared/routes/app_router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 
 @RoutePage()
 class ProfileScreen extends StatefulWidget {
@@ -26,7 +28,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             title: const Text("Profil"),
             automaticallyImplyLeading: false,
             leading: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pop(context);
+              },
               icon: const Icon(Icons.arrow_back),
               color: Colors.white,
             ),
@@ -44,113 +48,134 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ? Center(
                   child: FilledButton(
                     onPressed: () {
-                      context.router.push( LoginRoute(onTap: () {}));
+                      context.router.push(LoginRoute(onTap: () {}));
                     },
                     child: const Text("Login"),
                   ),
                 )
-              : Container(
-                  padding: const EdgeInsets.only(left: 15, top: 20, right: 15),
-                  child: GestureDetector(
-                    onTap: () {
-                      FocusScope.of(context).unfocus();
-                    },
-                    child: ListView(
-                      children: [
-                        Center(
-                          child: Stack(
-                            children: [
-                              Container(
-                                width: 130,
-                                height: 130,
-                                decoration: BoxDecoration(
-                                  border:
-                                      Border.all(width: 4, color: Colors.white),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      spreadRadius: 2,
-                                      blurRadius: 10,
-                                      color: Colors.black.withOpacity(0.1),
-                                    ),
-                                  ],
-                                  shape: BoxShape.circle,
-                                  image: const DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: NetworkImage(
-                                      'https://cdn.pixabay.com/photo/2020/08/29/08/31/woman-5526483_1280.jpg',
+              : SingleChildScrollView(
+                  child: Container(
+                    padding: const EdgeInsets.only(left: 15, top: 20, right: 15),
+                    child: GestureDetector(
+                      onTap: () {
+                        FocusScope.of(context).unfocus();
+                      },
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Center(
+                            child: Stack(
+                              children: [
+                                Container(
+                                  width: 130,
+                                  height: 130,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(width: 4, color: Colors.white),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        spreadRadius: 2,
+                                        blurRadius: 10,
+                                        color: Colors.black.withOpacity(0.1),
+                                      ),
+                                    ],
+                                    shape: BoxShape.circle,
+                                    image: const DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image: NetworkImage(
+                                        'https://cdn.pixabay.com/photo/2020/08/29/08/31/woman-5526483_1280.jpg',
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              Positioned(
-                                bottom: 0,
-                                right: 0,
-                                child: Container(
-                                  height: 40,
-                                  width: 40,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    border: Border.all(
-                                      width: 4,
-                                      color: Colors.white,
+                                Positioned(
+                                  bottom: 0,
+                                  right: 0,
+                                  child: Container(
+                                    height: 40,
+                                    width: 40,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                        width: 4,
+                                        color: Colors.white,
+                                      ),
+                                      color: Colors.teal,
                                     ),
-                                    color: Colors.teal,
+                                    child: const Icon(Icons.edit),
                                   ),
-                                  child: const Icon(Icons.edit),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 30),
+                          buildTextField("Full Name", "Dorky", false),
+                          buildTextField("Email", "dorky@gmail.com", false),
+                          buildTextField("Password", "******", true),
+                          buildTextField("Location", "Douala & Logbessou", false),
+                          const SizedBox(height: 30),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              OutlinedButton(
+                                onPressed: () {},
+                                style: OutlinedButton.styleFrom(
+                                  padding: const EdgeInsets.symmetric(horizontal: 50),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                ),
+                                child: const Text(
+                                  "CANCEL",
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    letterSpacing: 2,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                              ElevatedButton(
+                                onPressed: () {},
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.teal,
+                                  padding: const EdgeInsets.symmetric(horizontal: 50),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                ),
+                                child: const Text(
+                                  "SAVE",
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    letterSpacing: 2,
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
                             ],
                           ),
-                        ),
-                        const SizedBox(height: 30),
-                        buildTextField("Full Name", "Dorky", false),
-                        buildTextField("Email", "dorky@gmail.com", false),
-                        buildTextField("Password", "******", true),
-                        buildTextField("Location", "Douala & Logbessou", false),
-                        const SizedBox(height: 30),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            OutlinedButton(
-                              onPressed: () {},
-                              style: OutlinedButton.styleFrom(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 50),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                              ),
-                              child: const Text(
-                                "CANCEL",
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  letterSpacing: 2,
-                                  color: Colors.black,
-                                ),
-                              ),
+                          const SizedBox(height: 20),
+                          ElevatedButton(
+                            onPressed: () {
+                              // Naviguer vers la page de publication d'annonce
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const PublierAnnounceScreen()),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.blue,
+                              padding: const EdgeInsets.symmetric(horizontal: 30),
                             ),
-                            ElevatedButton(
-                              onPressed: () {},
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.teal,
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 50),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                              ),
-                              child: const Text(
-                                "SAVE",
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  letterSpacing: 2,
-                                  color: Colors.white,
-                                ),
-                              ),
+                            child: const Text(
+                              'Publier une annonce',
+                              style: TextStyle(color: Colors.white),
                             ),
-                          ],
-                        ),
-                      ],
+                          ),
+                          const SizedBox(height: 20),
+                      
+                          const SizedBox(height: 20),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -159,8 +184,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  Widget buildTextField(
-      String labelText, String placeholder, bool isPasswordTextField) {
+  Widget buildTextField(String labelText, String placeholder, bool isPasswordTextField) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 30),
       child: TextField(

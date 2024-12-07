@@ -31,43 +31,53 @@ class CategoriesScreen extends StatelessWidget {
               ),
             );
           } else if (state is FetchCategoryListSuccess) {
-            return ListView.builder(
+            return GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 1.1,
+                mainAxisSpacing: 10,
+              ),
+              shrinkWrap: true,
               itemCount: state.categories?.length,
               itemBuilder: (context, index) {
                 final category = state.categories?[index];
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
+                return InkWell(
+                  onTap: () {
+                  },
                   child: Container(
+                    margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 15),
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                      boxShadow: [
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: const [
                         BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 2,
-                          blurRadius: 5,
-                          offset: const Offset(0, 3), // changes position of shadow
+                          color: Colors.teal,
+                          spreadRadius: 1,
+                          blurRadius: 6,
                         ),
                       ],
                     ),
-                    child: ListTile(
-                      leading: const Icon(
-                        Icons.category,
-                        color: Colors.teal,
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Row(
+                        children: [
+                          const Icon(
+                            Icons.category,
+                            color: Colors.teal,
+                          ),
+                          const SizedBox(width: 5),
+                          Expanded(
+                            child: Text(
+                              category!.name,
+                              style: const TextStyle(
+                                color: Colors.black87,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
                       ),
-                      title: Text(
-                        category!.name,
-                        style: const TextStyle(
-                          color: Colors.black87,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      trailing: const Icon(
-                        Icons.arrow_forward_ios,
-                        color: Colors.teal,
-                      ),
-                      onTap: () {
-                      },
                     ),
                   ),
                 );

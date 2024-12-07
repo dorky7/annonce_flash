@@ -39,10 +39,10 @@ class _HomeScreenState extends State<HomeScreen> {
         !controller.position.outOfRange) {
       log('Load More');
       getIt.get<AnnounceListBloc>().add(
-            FetchMoreAnnounceListEvent(
-              filter: AnnounceQueryFilter(),
-            ),
-          );
+        FetchMoreAnnounceListEvent(
+          filter: AnnounceQueryFilter(),
+        ),
+      );
     }
   }
 
@@ -54,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
           decoration: InputDecoration(
             hintText: 'Search...',
             border: InputBorder.none,
-            hintStyle: TextStyle(color: Colors.white60),
+            hintStyle: TextStyle(color: Colors.black12),
           ),
           style: TextStyle(color: Colors.white, fontSize: 16.0),
         ),
@@ -64,7 +64,6 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () {},
           ),
         ],
-        backgroundColor: AppColors.primary,
       ),
       body: BlocBuilder<AnnounceListBloc, AnnounceListState>(
         builder: (context, state) {
@@ -74,10 +73,10 @@ class _HomeScreenState extends State<HomeScreen> {
               child: TextButton(
                 onPressed: () {
                   getIt.get<AnnounceListBloc>().add(
-                        FetchAnnounceListEvent(
-                          filter: AnnounceQueryFilter(),
-                        ),
-                      );
+                    FetchAnnounceListEvent(
+                      filter: AnnounceQueryFilter(),
+                    ),
+                  );
                 },
                 child: Text(
                   state.message,
@@ -107,23 +106,33 @@ class _HomeScreenState extends State<HomeScreen> {
             );
           }
 
-          return Column(
-            children: [
-              Expanded(
-                child: GridView.builder(
-                  
+          return SingleChildScrollView(
+            child: Column(
+              children: [
+                GridView.builder(
                   controller: controller,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 5,
+                    mainAxisSpacing: 5,
                   ),
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: announces!.length,
                   itemBuilder: (context, index) {
                     final announce = announces[index];
                     return Container(
+                      margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.grey,
+                            spreadRadius: 1,
+                            blurRadius: 6,
+                          ),
+                        ],
                       ),
                       child: Column(
                         children: [
@@ -132,12 +141,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Image.network(
                               announce.picture.url.full,
                               width: double.infinity,
-                              height: 60,
+                              height: 100,
                               fit: BoxFit.cover,
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(10.0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -155,18 +164,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     fontWeight: FontWeight.w600,
                                     color: Colors.blue,
                                   ),
-                                ),
-                                const SizedBox(height: 2),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    IconButton(
-                                      icon: const Icon(Icons.bookmark_border, color: Colors.black),
-                                      onPressed: () {},
-                                    ),
-                                  ],
-                                ),
-                              ],
+                                ),   
+                           ],
                             ),
                           ),
                         ],
@@ -174,15 +173,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   },
                 ),
-              ),
-              if (state is FetchMoreAnnounceListLoading) ...[
-                const Center(
-                  child: CupertinoActivityIndicator(
-                    radius: 40,
+                if (state is FetchMoreAnnounceListLoading) ...[
+                  const Center(
+                    child: CupertinoActivityIndicator(
+                      radius: 40,
+                    ),
                   ),
-                ),
+                ],
               ],
-            ],
+            ),
           );
         },
       ),
