@@ -46,7 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
         if (state is LoginFailure) {
           showError('Incorrect credentials');
         } else if (state is LoginSuccess) {
-          context.router.push(ProfileRoute());  // Adjust navigation to ProfileScreen
+          context.router.push(const ProfileRoute());  // Adjust navigation to ProfileScreen
         }
       },
       builder: (context, state) {

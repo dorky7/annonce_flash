@@ -34,4 +34,6 @@ class PaginatedData<T> {
           : [],
     );
   }
+
+  get length => null;
 }
