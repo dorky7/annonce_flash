@@ -21,6 +21,15 @@ class PublierAnnounceScreen extends StatelessWidget {
             children: <Widget>[
               const TextField(
                 decoration: InputDecoration(
+                  labelText: 'Catégorie',
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.teal),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+              const TextField(
+                decoration: InputDecoration(
                   labelText: 'Titre',
                   border: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.teal),
@@ -48,6 +57,21 @@ class PublierAnnounceScreen extends StatelessWidget {
                 keyboardType: TextInputType.number,
               ),
               const SizedBox(height: 16),
+              const TextField(
+                decoration: InputDecoration(
+                  labelText: 'Contact Name',
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.teal),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: () {
+                },
+                child: const Text('Ajouter une image'),
+              ),
+              const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {
                 },
@@ -61,4 +85,3 @@ class PublierAnnounceScreen extends StatelessWidget {
     );
   }
 }
-

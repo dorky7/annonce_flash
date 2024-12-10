@@ -54,6 +54,7 @@ dependencies:
   connectivity_plus: ^6.1.0
   another_flushbar: ^1.12.30
   loader_overlay: ^4.0.3
+  image_picker: ^1.1.2
   
  
 
