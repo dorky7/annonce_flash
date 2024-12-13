@@ -1,5 +1,7 @@
 import 'package:annonceflash_project/categories/data/model/category_model.dart';
 import 'package:annonceflash_project/categories/data/reposetories/category_repository.dart';
+import 'package:annonceflash_project/shared/models/paginated_data.dart';
+import 'package:annonceflash_project/shared/utils.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
@@ -17,7 +19,11 @@ class CategoryListBloc extends Bloc<CategoryListEvent, CategoryListState> {
 
         emit(FetchCategoryListSuccess(categories: categories));
       } catch (e) {
-        emit (FetchCategoryListFaillure(message: e.toString()));
+        emit(
+          FetchCategoryListFailure(
+            message: Utils.extraErrorMessage(e),
+          ),
+        );
       }
     });
   }

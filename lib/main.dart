@@ -2,6 +2,7 @@ import 'package:annonceflash_project/auth/business_logic/bloc/auth_bloc.dart';
 import 'package:annonceflash_project/categories/business_logic/bloc/category_list_bloc.dart';
 import 'package:annonceflash_project/shared/routes/app_router.dart';
 import 'package:annonceflash_project/service_locator.dart';
+import 'package:annonceflash_project/shared/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loader_overlay/loader_overlay.dart';
@@ -34,12 +35,23 @@ class MyApp extends StatelessWidget {
         child: MaterialApp.router(
           title: 'Annonces Flash',
           theme: ThemeData(
-            primarySwatch: Colors.blue,
+            colorScheme: ColorScheme.fromSeed(
+              seedColor: AppColors.primary,
+            ),
           ),
           debugShowCheckedModeBanner: false,
           routerConfig: _appRouter.config(),
+          builder: (context, child) => _unFocusWrapper(child),
         ),
       ),
     );
   }
+}
+
+Widget _unFocusWrapper(Widget? child) {
+  return GestureDetector(
+    behavior: HitTestBehavior.opaque,
+    onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+    child: child,
+  );
 }

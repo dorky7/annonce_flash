@@ -1,9 +1,10 @@
-
+import 'package:annonceflash_project/annonces/data/models/announce_query_filter.dart';
 import 'package:annonceflash_project/categories/business_logic/bloc/category_list_bloc.dart';
 import 'package:annonceflash_project/shared/extensions/context_extensions.dart';
-import 'package:annonceflash_project/shared/extensions/string_extensions.dart';
+import 'package:annonceflash_project/shared/routes/app_router.gr.dart';
 import 'package:annonceflash_project/shared/theme/app_colors.dart';
 import 'package:annonceflash_project/shimmer_container.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -40,32 +41,29 @@ class HorizontalCategoriesWidget extends StatelessWidget {
             ),
           );
         }
-        if (state.categories?.isNotEmpty ?? false) {
+
+        if (state.categories?.data.isNotEmpty ?? false) {
           return Container(
             height: 50,
             width: MediaQuery.sizeOf(context).width,
             padding: const EdgeInsets.all(5),
             child: ListView.builder(
-              itemCount: (state.categories ?? []).length,
+              itemCount: (state.categories?.data ?? []).length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (BuildContext context, int index) {
+                final category = state.categories!.data[index];
                 return InkWell(
                   onTap: () {
-                    // Navigator.of(context).push(
-                    //   MaterialPageRoute(builder: (context) {
-                    //     return AnnonceDetailsPage(
-                    //       annonce: ,
-                    //       bloc: AnnonceBloc(
-                    //         repository: getIt.get<AnnonceRepository>(),
-                    //         filter: AnnonceQueryFilter(
-                    //           category: state.categories![index],
-                    //         ),
-                    //       )..add(GetAnnonceEvents()),
-                    //       titre: state.categories![index].capitalize(),
-                    //     );
-                    //   }),
-                    // );
+                    context.router.push(
+                      AnnounceListRoute(
+                        filter: AnnounceQueryFilter(),
+                        title: category.name,
+                      ),
+                    );
                   },
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(18),
+                  ),
                   child: Container(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 12,
@@ -79,7 +77,7 @@ class HorizontalCategoriesWidget extends StatelessWidget {
                     ),
                     child: Center(
                       child: Text(
-                        state.categories![index].slug.capitalize(),
+                        state.categories!.data[index].name,
                         style: context.textTheme.bodyLarge?.copyWith(
                           fontWeight: FontWeight.w600,
                         ),

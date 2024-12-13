@@ -4,7 +4,7 @@ sealed class AuthState extends Equatable {
   final UserModel? user;
 
   const AuthState({this.user});
-  
+
   @override
   List<Object> get props => [];
 }
@@ -22,19 +22,19 @@ final class LoginFailure extends AuthState {
   const LoginFailure({required this.message});
 }
 
-final class FistTimeLaunch extends AuthState {}
-
 final class CheckAuthStateFailure extends AuthState {}
 
 final class CheckAuthStateSuccess extends AuthState {
   const CheckAuthStateSuccess({required super.user});
 }
 
-final class SignUpLoading extends AuthState {} 
-final class SignUpSuccess extends AuthState { 
-  const SignUpSuccess({required super.user}); 
-  } 
-  
-  final class SignUpFailure extends AuthState { 
-    final String message; 
-    const SignUpFailure({required this.message}); }
+final class SignUpLoading extends AuthState {}
+
+final class SignUpSuccess extends AuthState {
+  const SignUpSuccess({required super.user});
+}
+
+final class SignUpFailure extends AuthState {
+  final String message;
+  const SignUpFailure({required this.message});
+}

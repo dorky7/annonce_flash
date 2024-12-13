@@ -36,7 +36,7 @@ void setupLocator() {
   getIt.registerSingleton(
     AuthBloc(
       repository: getIt.get<AuthRepository>(),
-    ),
+    )..add(CheckAuthStateEvent()),
   );
 
   getIt.registerSingleton(AnnounceService(http: getIt.get<Dio>()));
@@ -50,11 +50,12 @@ void setupLocator() {
       repository: getIt.get<AnnounceRepository>(),
     )..add(
         FetchAnnounceListEvent(
-          filter: AnnounceQueryFilter(),
+          filter: AnnounceQueryFilter(
+            perPage: 50,
+          ),
         ),
       ),
   );
-
 
   getIt.registerSingleton(CategoryService(http: getIt.get<Dio>()));
 
@@ -63,11 +64,10 @@ void setupLocator() {
   );
 
   getIt.registerSingleton(
-    CategoryListBloc(repository: getIt.get<CategoryRepository>(),
-     
-    )
+    CategoryListBloc(
+      repository: getIt.get<CategoryRepository>(),
+    )..add(
+        FetchCategoryListEvent(),
+      ),
   );
-
-
-
 }

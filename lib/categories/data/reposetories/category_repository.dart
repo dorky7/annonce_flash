@@ -1,5 +1,6 @@
 import 'package:annonceflash_project/categories/data/model/category_model.dart';
 import 'package:annonceflash_project/categories/data/services/category_service.dart';
+import 'package:annonceflash_project/shared/models/paginated_data.dart';
 
 class CategoryRepository {
   final CategoryService service;
@@ -8,8 +9,11 @@ class CategoryRepository {
     required this.service,
   });
 
-  Future<List<CategoryModel>> fetchCategories() async {
+  Future<PaginatedData<CategoryModel>> fetchCategories() async {
     final data = await service.fetchCategories();
-    return (data['result']['data'] as List ).map((json)=>CategoryModel.fromJson(json)).toList();
+    return PaginatedData<CategoryModel>.fromJson(
+      json: data['result'],
+      fromJsonT: CategoryModel.fromJson,
+    );
   }
 }

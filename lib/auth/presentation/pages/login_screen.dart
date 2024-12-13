@@ -1,7 +1,6 @@
 import 'package:annonceflash_project/auth/business_logic/bloc/auth_bloc.dart';
 import 'package:annonceflash_project/auth/presentation/app_button.dart';
 import 'package:annonceflash_project/auth/presentation/app_text_field.dart';
-import 'package:annonceflash_project/auth/presentation/pages/register/register_screen.dart';
 import 'package:annonceflash_project/shared/routes/app_router.gr.dart';
 import 'package:annonceflash_project/shared/widgets/app_snackbar.dart';
 import 'package:auto_route/auto_route.dart';
@@ -72,69 +71,79 @@ class _LoginScreenState extends State<LoginScreen> {
           body: SafeArea(
             child: Center(
               child: SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(Icons.lock, size: 100),
-                    const SizedBox(height: 50),
-                    Text(
-                      'Welcome back, you\'ve been missed!',
-                      style: TextStyle(color: Colors.grey[700]),
-                    ),
-                    const SizedBox(height: 25),
-                    AppTextfield(
-                      controller: emailController,
-                      hinText: 'Email',
-                      obscureText: false,
-                    ),
-                    const SizedBox(height: 20),
-                    AppTextfield(
-                      controller: passwordController,
-                      hinText: 'Password',
-                      obscureText: true,
-                    ),
-                    const SizedBox(height: 30),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
+                child: AutofillGroup(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(Icons.lock, size: 100),
+                      const SizedBox(height: 50),
+                      Text(
+                        'Welcome back, you\'ve been missed!',
+                        style: TextStyle(color: Colors.grey[700]),
                       ),
-                      child: AppButton(
-                        onTap: () {
-                          context.read<AuthBloc>().add(
-                                LoginEvent(
-                                  email: emailController.text,
-                                  password: passwordController.text,
-                                ),
-                              );
-                        },
+                      const SizedBox(height: 25),
+                      AppTextfield(
+                        controller: emailController,
+                        hinText: 'Email',
+                        obscureText: false,
+                        keyboardType: TextInputType.emailAddress,
+                        autofillHints: const [
+                          AutofillHints.email,
+                        ],
                       ),
-                    ),
-                    const SizedBox(height: 50),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Don\'t have an account?',
-                          style: TextStyle(color: Colors.grey[700]),
+                      const SizedBox(height: 20),
+                      AppTextfield(
+                        controller: passwordController,
+                        hinText: 'Password',
+                        obscureText: true,
+                        keyboardType: TextInputType.visiblePassword,
+                        autofillHints: const [
+                          AutofillHints.password,
+                        ],
+                      ),
+                      const SizedBox(height: 30),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20,
                         ),
-                        const SizedBox(width: 4),
-                        GestureDetector(
+                        child: AppButton(
                           onTap: () {
-                            context.router.push(
-                              const RegisterRoute(),
-                            );
+                            context.read<AuthBloc>().add(
+                                  LoginEvent(
+                                    email: emailController.text,
+                                    password: passwordController.text,
+                                  ),
+                                );
                           },
-                          child: const Text(
-                            'Register now',
-                            style: TextStyle(
-                              color: Colors.blue,
-                              fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 50),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Don\'t have an account?',
+                            style: TextStyle(color: Colors.grey[700]),
+                          ),
+                          const SizedBox(width: 4),
+                          GestureDetector(
+                            onTap: () {
+                              context.router.push(
+                                const RegisterRoute(),
+                              );
+                            },
+                            child: const Text(
+                              'Register now',
+                              style: TextStyle(
+                                color: Colors.blue,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    )
-                  ],
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),

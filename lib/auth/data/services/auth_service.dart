@@ -1,7 +1,6 @@
 import 'package:annonceflash_project/auth/data/models/register_request.dart';
 import 'package:annonceflash_project/shared/utils.dart';
 import 'package:dio/dio.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
   final Dio http;
@@ -43,11 +42,10 @@ class AuthService {
     return response.data;
   }
 
-  Future<dynamic> getCurrentUser() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    var userId = prefs.getString('userId');
-    Response response = await http.get('/auth/logout/$userId');
+  Future<dynamic> getUserById({
+    required int id,
+  }) async {
+    Response response = await http.get('/users/$id');
     return response.data;
   }
 }

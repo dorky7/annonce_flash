@@ -20,6 +20,7 @@ class AuthRepository {
 
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('token', data['extra']["authToken"]);
+    await prefs.setInt('user_id', data['result']["id"]);
 
     return UserModel.fromJson(data["result"]);
   }
@@ -34,9 +35,11 @@ class AuthRepository {
     return UserModel.fromJson(data["result"]);
   }
 
-  Future<dynamic> getCurrentUser() async {
-    var data = await service.getCurrentUser();
+  Future<UserModel> getUserById({
+    required int id,
+  }) async {
+    var data = await service.getUserById(id: id);
 
-    return UserModel.fromJson(data);
+    return UserModel.fromJson(data['result']);
   }
 }

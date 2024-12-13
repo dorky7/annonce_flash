@@ -49,22 +49,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     on<CheckAuthStateEvent>((event, emit) async {
       try {
+        emit(LoginLoading());
         final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-        var value = prefs.getBool('is_first_time_launch');
+        var userId = prefs.getInt('user_id');
 
-        if (value == false) {
-          var user = await repository.getCurrentUser();
-
-          if (user != null) {
-            emit(CheckAuthStateSuccess(user: user));
-          }
-
-          emit(CheckAuthStateFailure());
+        if (userId != null) {
+          var user = await repository.getUserById(id: userId);
+          emit(CheckAuthStateSuccess(user: user));
           return;
         }
 
-        emit(FistTimeLaunch());
+        emit(CheckAuthStateFailure());
       } catch (e) {
         emit(CheckAuthStateFailure());
       }

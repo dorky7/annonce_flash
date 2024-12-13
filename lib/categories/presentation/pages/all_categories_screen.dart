@@ -7,7 +7,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
 class AllProducts extends StatelessWidget {
-  const AllProducts({super.key, required this.bloc});
+  const AllProducts({
+    super.key,
+    required this.bloc,
+  });
   final AnnounceListBloc bloc;
 
   @override
@@ -50,4 +53,3 @@ class AllProducts extends StatelessWidget {
     );
   }
 }
-

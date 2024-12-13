@@ -19,6 +19,7 @@ class ApplicationScreen extends StatelessWidget {
       bottomNavigationBuilder: (_, tabsRouter) {
         return BottomNavigationBar(
           currentIndex: tabsRouter.activeIndex,
+
           onTap: tabsRouter.setActiveIndex,
           // onTap: (value) {
           //   if (value == 3) {
@@ -34,28 +35,28 @@ class ApplicationScreen extends StatelessWidget {
           items: const [
             BottomNavigationBarItem(
               backgroundColor: AppColors.black,
-              label: 'Home',
+              label: 'Accueil',
               icon: Icon(
                 Icons.home,
               ),
             ),
             BottomNavigationBarItem(
               backgroundColor: AppColors.black,
-              label: 'Search',
+              label: 'Recherche',
               icon: Icon(
                 Icons.search,
               ),
             ),
             BottomNavigationBarItem(
               backgroundColor: AppColors.black,
-              label: 'Categories ',
+              label: 'Catégories ',
               icon: Icon(
                 Icons.category,
               ),
             ),
             BottomNavigationBarItem(
               backgroundColor: AppColors.black,
-              label: 'Profile',
+              label: 'Profil',
               icon: Icon(
                 Icons.person,
               ),

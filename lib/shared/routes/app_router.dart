@@ -32,8 +32,8 @@ class AppRouter extends RootStackRouter {
           path: '/login',
         ),
         AutoRoute(
-          page: RegisterRoute.page,
-          path: '/register'
-          )
+          page: AnnounceListRoute.page,
+          path: '/announces-list',
+        ),
       ];
 }

@@ -10,10 +10,10 @@ class AppTextfield extends StatelessWidget {
   final VoidCallback? onTap;
   final TextInputType keyboardType;
   final List<String? Function(String?)> validators;
-  void Function(String)? onChanged;
+  final void Function(String)? onChanged;
   final List<String>? autofillHints;
 
-  AppTextfield({
+  const AppTextfield({
     Key? key,
     this.controller,
     required this.hinText,

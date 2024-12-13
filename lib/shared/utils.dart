@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
 
 import 'package:dio/dio.dart';
@@ -7,8 +6,8 @@ import 'package:dio/dio.dart';
 class Utils {
   static Future<String?> getIPAddress() async {
     final connectivityResult = await (Connectivity().checkConnectivity());
-    if (connectivityResult == ConnectivityResult.mobile ||
-        connectivityResult == ConnectivityResult.wifi) {
+    if (connectivityResult.contains(ConnectivityResult.mobile) ||
+        connectivityResult.contains(ConnectivityResult.wifi)) {
       try {
         // Get the list of network interfaces
         for (var interface in await NetworkInterface.list()) {
