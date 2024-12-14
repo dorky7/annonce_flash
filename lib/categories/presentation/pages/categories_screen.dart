@@ -1,4 +1,6 @@
+import 'package:annonceflash_project/annonces/data/models/announce_query_filter.dart';
 import 'package:annonceflash_project/categories/business_logic/bloc/category_list_bloc.dart';
+import 'package:annonceflash_project/shared/routes/app_router.gr.dart';
 
 import 'package:annonceflash_project/shared/theme/app_colors.dart';
 
@@ -79,7 +81,17 @@ class CategoriesScreen extends StatelessWidget {
                       ],
                     ),
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        context.router.push(
+                          AnnounceListRoute(
+                            filter: AnnounceQueryFilter(
+                              op: 'similar',
+                              postId: category.id,
+                            ),
+                            title: category.name,
+                          ),
+                        );
+                      },
                       child: Padding(
                         padding: const EdgeInsets.all(20.0),
                         child: Center(

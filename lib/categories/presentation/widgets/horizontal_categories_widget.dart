@@ -56,7 +56,10 @@ class HorizontalCategoriesWidget extends StatelessWidget {
                   onTap: () {
                     context.router.push(
                       AnnounceListRoute(
-                        filter: AnnounceQueryFilter(),
+                        filter: AnnounceQueryFilter(
+                          op: 'similar',
+                          postId: category.id,
+                        ),
                         title: category.name,
                       ),
                     );
